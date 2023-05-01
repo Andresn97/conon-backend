@@ -2,7 +2,7 @@
 import { Sequelize } from "sequelize";
 
 import { dbConfig } from "../config/config";
-import { setupSharedModels, setupUsersModels } from "../models/setup";
+// import { setupSharedModels, setupUsersModels } from "../models/setup";
 
 
 const { 
@@ -23,8 +23,8 @@ const database = new Sequelize(
   } 
 );
 
-setupSharedModels( database );
-setupUsersModels( database );
+// setupSharedModels( database );
+// setupUsersModels( database );
 
 
 export default database;

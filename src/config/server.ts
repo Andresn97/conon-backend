@@ -6,6 +6,7 @@ import database from '../database/connection';
 import { getSharedPaths, getUsersPaths } from '../helpers';
 import { setUserRoutes } from '../routes/config';
 import { setSharedRoutes } from '../routes/config/sharedRouter';
+import dbInit from '../database/setup';
 
 
 
@@ -62,7 +63,8 @@ class Server {
       await database.authenticate();
       console.log('Database Online');
       console.log('models',database.models);
-      await database.sync({ force: true }); //force false en prod
+      dbInit();
+      // await database.sync({ force: true }); //force false en prod
       
     } catch (error) {
       throw new Error('Ocurrió el siguiente error ' + error);

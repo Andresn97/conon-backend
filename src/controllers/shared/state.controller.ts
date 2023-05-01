@@ -1,10 +1,8 @@
 import { Request, Response } from "express";
-
-import { StateService } from "../../services/shared";
-
+import * as stateService from '../../services/shared';
 
 
-const stateService = new StateService();
+
 
 export const getStates = async ( req: Request, res: Response ) => {
   try {
@@ -31,12 +29,33 @@ export const createState = async ( req: Request, res: Response ) => {
     console.log(req.body);
     
     const stateCreated = await stateService.create( req.body );
+    const { id, reference } = stateCreated;
 
     res.json({
       success: true, 
-      state: stateCreated
+      state: { id, reference }
     });
   
+  } catch (error) {
+    res.status(500).json({ 
+      ok: false, 
+      msg: 'Por favor consulte con el Administrador [State].' 
+    });
+  }
+}
+
+export const updateState = async ( req: Request, res: Response ) => {
+  try {
+    
+    const { id:reqId } = req.params;
+    const currentState = await stateService.update( +reqId, req.body );
+    const { id, reference } = currentState; 
+
+    res.json({
+      success: true, 
+      state: { id, reference }
+    });
+
   } catch (error) {
     res.status(500).json({ 
       ok: false, 
