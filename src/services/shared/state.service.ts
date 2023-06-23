@@ -4,11 +4,18 @@ import { StateOutput } from "../../interfaces/shared";
 import { StateInput } from "../../interfaces/shared";
 
 
-const stateReadReference = [ 'id', 'reference' ]; 
+const stateReadReference = [ 'id', 'reference', 'full_name' ]; 
+const stateFullReadReference = [ 
+  'id', 
+  'reference', 
+  'full_name',
+  'createdAt',
+  'updatedAt'
+]; 
 
 export const findAll = (): Promise<StateOutput[]> => {
   return State.findAll({
-    attributes: stateReadReference
+    attributes: stateFullReadReference
   });
 }
 

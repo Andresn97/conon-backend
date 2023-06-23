@@ -2,18 +2,31 @@ import { Router } from "express";
 
 import { 
   createState, 
-  getStates, 
+  getStates,
+  updateState, 
 } from "../../controllers/shared";
+import { 
+  validateCreateState, 
+  validateUpdateState 
+} from "../../validators/shared/state";
 
 
 
 const stateRouter = Router();
 
-stateRouter.get('/', getStates);
+stateRouter.get('/', 
+  getStates
+);
 
-stateRouter.post('/', createState);
+stateRouter.post('/', 
+  validateCreateState,
+  createState
+);
 
-
+stateRouter.put('/:id',
+  validateUpdateState,
+  updateState
+);
 
 
 export {

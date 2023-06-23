@@ -2,8 +2,6 @@ import { Request, Response } from "express";
 import * as stateService from '../../services/shared';
 
 
-
-
 export const getStates = async ( req: Request, res: Response ) => {
   try {
     
@@ -26,13 +24,11 @@ export const getStates = async ( req: Request, res: Response ) => {
 export const createState = async ( req: Request, res: Response ) => {
   try { 
     
-    console.log(req.body);
-    
     const stateCreated = await stateService.create( req.body );
     const { id, reference } = stateCreated;
 
-    res.json({
-      success: true, 
+    res.status(201).json({
+      ok: true, 
       state: { id, reference }
     });
   
@@ -47,13 +43,13 @@ export const createState = async ( req: Request, res: Response ) => {
 export const updateState = async ( req: Request, res: Response ) => {
   try {
     
-    const { id:reqId } = req.params;
+    const { id: reqId } = req.params;
     const currentState = await stateService.update( +reqId, req.body );
-    const { id, reference } = currentState; 
+    const { id, reference, full_name } = currentState; 
 
     res.json({
-      success: true, 
-      state: { id, reference }
+      ok: true, 
+      state: { id, reference, full_name }
     });
 
   } catch (error) {

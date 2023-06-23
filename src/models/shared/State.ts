@@ -27,7 +27,7 @@ State.init({
     allowNull: false
   },
   full_name: {
-    type: DataTypes.STRING(4),
+    type: DataTypes.STRING(10),
     allowNull: false
   }
 }, {

@@ -16,4 +16,5 @@ export interface StateInput extends Optional<StateAttributes, 'id'> {}
 export interface StateOutput {
   id: number;
   reference: string;
+  full_name: string;
 }
