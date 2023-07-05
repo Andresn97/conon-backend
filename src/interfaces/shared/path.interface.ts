@@ -1,5 +1,6 @@
 
 
 export interface SharedPaths {
-  state: string
+  state: string;
+  role: string;
 }

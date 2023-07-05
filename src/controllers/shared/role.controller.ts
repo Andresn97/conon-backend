@@ -1,15 +1,12 @@
 import { Request, Response } from "express";
-
-import { RoleService } from "../../services/users";
-
+import { create, findAll, update } from "../../services/shared/role.service";
 
 
-const roleService = new RoleService();
 
 export const getRoles = async ( req: Request, res: Response ) => {
   try {
     
-    const roles = await roleService.findAll();
+    const roles = await findAll();
 
     return res.json({
       ok: true,
@@ -28,7 +25,7 @@ export const getRoles = async ( req: Request, res: Response ) => {
 export const createRole = async ( req: Request, res: Response ) => {
   try { 
     
-    const stateCreated = await roleService.create( req.body );
+    const stateCreated = await create( req.body );
 
     res.status(201).json({
       success: true, 
@@ -54,7 +51,8 @@ export const updateRole = async ( req: Request, res: Response ) => {
       });
     }
 
-    const currentState = await roleService.findOne( +id );
+    // const currentState = await findOne( +id );
+    const currentState = false
     if ( !currentState ) {
       return res.status(400).json({
         ok: false,
@@ -62,7 +60,7 @@ export const updateRole = async ( req: Request, res: Response ) => {
       });
     }
 
-    const updateResponse = roleService.update( currentState, req.body );
+    const updateResponse = update( currentState, req.body );
     res.json({
       ok: true,
       role: updateResponse

@@ -1,7 +1,6 @@
 
 import { State } from "../../models/shared";
-import { StateOutput } from "../../interfaces/shared";
-import { StateInput } from "../../interfaces/shared";
+import { StateInput, StateOutput } from "../../interfaces/shared";
 
 
 const stateReadReference = [ 'id', 'reference', 'full_name' ]; 

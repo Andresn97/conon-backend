@@ -1,7 +1,8 @@
-import { DataTypes, Model, Optional } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 
 import database from "../../database/connection";
 import { StateAttributes, StateInput } from "../../interfaces/shared";
+import { User } from "../users/User";
 
 
 
@@ -36,6 +37,10 @@ State.init({
   tableName: 'states',
   paranoid: true
 });
+
+State.hasOne(User);
+
+
 
 export default State;
 

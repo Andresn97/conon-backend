@@ -1,6 +1,5 @@
 import { Router } from "express";
-
-import { createRole, getRoles } from "../../controllers/users";
+import { createRole, getRoles } from "../../controllers/shared";
 
 
 const roleRouter = Router();
@@ -9,7 +8,7 @@ roleRouter.get('/', getRoles);
 
 roleRouter.post('/', createRole);
 
-roleRouter.put('/:id', createRole);
+// roleRouter.put('/:id', createRole);
 
 
 export { 
